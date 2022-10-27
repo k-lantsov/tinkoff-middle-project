@@ -1,4 +1,4 @@
 rootProject.name = 'tinkoff-middle-project'
 
 includeBuild 'discovery-service'
-
+includeBuild 'person-service'
