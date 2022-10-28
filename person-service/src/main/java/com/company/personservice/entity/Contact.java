@@ -2,7 +2,10 @@ package com.company.personservice.entity;
 
 import com.company.personservice.entity.converter.ContactTypeConverter;
 import com.company.personservice.entity.enums.ContactType;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 

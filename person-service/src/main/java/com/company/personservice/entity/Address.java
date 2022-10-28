@@ -42,5 +42,5 @@ public class Address extends ParentEntity{
     @JoinTable(name = "person_address"
             , joinColumns = @JoinColumn(name = "person_id")
             , inverseJoinColumns = @JoinColumn(name = "address_id"))
-    private Set<Address> addresses;
+    private Set<Person> persons;
 }

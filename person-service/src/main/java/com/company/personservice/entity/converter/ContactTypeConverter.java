@@ -1,6 +1,5 @@
 package com.company.personservice.entity.converter;
 
-import com.company.personservice.entity.enums.AddressType;
 import com.company.personservice.entity.enums.ContactType;
 
 import javax.persistence.AttributeConverter;
