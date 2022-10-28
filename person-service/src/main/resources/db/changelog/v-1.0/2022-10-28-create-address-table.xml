@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="create-address-table" author="kostialantsov">
+        <createTable tableName="address">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="uuid_d" type="UUID">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="country" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="locality" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="house_number" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="apartments_number" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="postcode" type="VARCHAR(32)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="address_type" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="drop-identity_document-table" author="kostialantsov">
+        <rollback>
+            <dropTable tableName="identity_document"/>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>
