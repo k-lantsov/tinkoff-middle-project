@@ -20,7 +20,9 @@ public class PersonServiceImpl implements PersonService {
     @Transactional
     @Override
     public void savePerson(PersonDtoRequest personDtoRequest) {
-        Person person = converter.convertPersonDtoRequestToPerson(personDtoRequest);
-        repository.save(person);
+        Person beforeSavePerson = converter.convertPersonDtoRequestToPerson(personDtoRequest);
+        beforeSavePerson.getContacts().forEach(contact -> contact.setPerson(beforeSavePerson));
+        beforeSavePerson.getDocuments().forEach(document -> document.setPerson(beforeSavePerson));
+        repository.save(beforeSavePerson);
     }
 }

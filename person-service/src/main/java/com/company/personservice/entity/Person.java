@@ -20,15 +20,15 @@ public class Person extends ParentEntity{
     @Column(name = "lastname")
     private String lastname;
 
-    @OneToMany(mappedBy = "person")
+    @OneToMany(mappedBy = "person", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<IdentityDocument> documents;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "person_address"
-            , joinColumns = @JoinColumn(name = "address_id")
-            , inverseJoinColumns = @JoinColumn(name = "person_id"))
+            , joinColumns = @JoinColumn(name = "person_id")
+            , inverseJoinColumns = @JoinColumn(name = "address_id"))
     private Set<Address> addresses;
 
-    @OneToMany(mappedBy = "person")
+    @OneToMany(mappedBy = "person", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Contact> contacts;
 }

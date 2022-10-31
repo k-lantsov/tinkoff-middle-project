@@ -3,7 +3,6 @@ package com.company.personservice.entity;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.Objects;
 import java.util.UUID;
 
 @Data

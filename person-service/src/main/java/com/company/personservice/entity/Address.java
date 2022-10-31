@@ -38,9 +38,6 @@ public class Address extends ParentEntity{
     @Convert(converter = AddressTypeConverter.class)
     private AddressType addressType;
 
-    @ManyToMany
-    @JoinTable(name = "person_address"
-            , joinColumns = @JoinColumn(name = "person_id")
-            , inverseJoinColumns = @JoinColumn(name = "address_id"))
+    @ManyToMany(mappedBy = "addresses")
     private Set<Person> persons;
 }

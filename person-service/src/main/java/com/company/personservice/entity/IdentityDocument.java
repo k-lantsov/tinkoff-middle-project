@@ -25,6 +25,6 @@ public class IdentityDocument extends ParentEntity{
     private DocumentType documentType;
 
     @ManyToOne
-    @JoinColumn(name = "person_id")
+    @JoinColumn(name = "person_id", referencedColumnName = "id")
     private Person person;
 }

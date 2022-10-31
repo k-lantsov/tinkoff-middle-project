@@ -25,6 +25,6 @@ public class Contact extends ParentEntity{
     private String contactValue;
 
     @ManyToOne
-    @JoinColumn(name = "person_id")
+    @JoinColumn(name = "person_id", referencedColumnName = "id")
     private Person person;
 }

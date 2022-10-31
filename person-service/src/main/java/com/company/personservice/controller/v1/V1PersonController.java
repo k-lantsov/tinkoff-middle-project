@@ -3,7 +3,6 @@ package com.company.personservice.controller.v1;
 import com.company.personservice.controller.v1.converter.V1PersonControllerConverter;
 import com.company.personservice.controller.v1.dto.person.V1PersonRequestModel;
 import com.company.personservice.service.PersonService;
-import com.company.personservice.service.dto.person.PersonDtoRequest;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -27,8 +26,7 @@ public class V1PersonController {
     @Operation(summary = "Save new person", tags = {"v1-person-controller"})
     @PostMapping(value = "/save")
     public ResponseEntity<String> save(@RequestBody @Valid V1PersonRequestModel requestModel) {
-        PersonDtoRequest personDtoRequest = converter.convertV1PersonRequestModelToPersonSaveDto(requestModel);
-        personService.savePerson(personDtoRequest);
+        personService.savePerson(converter.convertV1PersonRequestModelToPersonSaveDto(requestModel));
         return ResponseEntity.status(HttpStatus.CREATED).body("Person was saved");
     }
 }
