@@ -6,7 +6,7 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
-    <changeSet id="create-person-table" author="kostialantsov">
+    <changeSet id="2022-10-28-create-person-table" author="kostialantsov">
         <createTable tableName="person">
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true"/>
@@ -21,6 +21,7 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
+        <addUniqueConstraint tableName="person" columnNames="firstname, lastname"/>
     </changeSet>
 
     <changeSet id="drop-person-table" author="kostialantsov">

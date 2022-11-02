@@ -24,6 +24,7 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
+        <addUniqueConstraint tableName="identity_document" columnNames="document_number, document_type"/>
         <addForeignKeyConstraint baseTableName="identity_document"
                                  baseColumnNames="person_id"
                                  constraintName="person_fk"

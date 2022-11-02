@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class IdentityDocumentDtoRequest {
+public class IdentityDocumentDto {
 
     private String documentNumber;
 

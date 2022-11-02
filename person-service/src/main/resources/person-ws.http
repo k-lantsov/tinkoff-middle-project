@@ -1,0 +1,53 @@
+### save new person
+POST http://localhost:8081/v1/api/persons/save
+Content-Type: application/json
+Accept: application/json
+
+
+{
+  "firstname": "Konstantin",
+  "lastname": "Lantsov",
+  "documents": [
+    {
+      "documentNumber": "MP3202487",
+      "documentType": "PASSPORT"
+    }
+  ],
+  "addresses": [
+    {
+      "country": "Belarus",
+      "locality": "Minsk",
+      "street": "Krasina",
+      "houseNumber": 24,
+      "apartmentsNumber": 79,
+      "postcode": "220109",
+      "addressType": "ACTUAL"
+    }
+  ],
+  "contacts": [
+    {
+      "contactType": "PHONE_NUMBER",
+      "contactValue": "+375447858303"
+    },
+    {
+      "contactType": "EMAIL",
+      "contactValue": "k.lantsov@yahoo.com"
+    }
+  ]
+}
+
+<> 2022-11-02T171539.201.json
+
+
+
+###get person info by uuid
+GET http://localhost:8081/v1/api/persons/cb4e964e-8595-42c4-a8a5-be3d790b0031
+Accept: application/json
+
+
+
+###get all persons
+GET http://localhost:8081/v1/api/persons
+Accept: application/json
+
+<> 2022-11-02T171554.200.json

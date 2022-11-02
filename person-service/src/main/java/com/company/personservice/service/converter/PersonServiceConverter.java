@@ -1,7 +1,8 @@
 package com.company.personservice.service.converter;
 
 import com.company.personservice.entity.Person;
-import com.company.personservice.service.dto.person.PersonDtoRequest;
+import com.company.personservice.service.dto.person.PersonRequestDto;
+import com.company.personservice.service.dto.person.PersonResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
@@ -12,7 +13,10 @@ public class PersonServiceConverter {
 
     private final ModelMapper mapper;
 
-    public Person convertPersonDtoRequestToPerson(PersonDtoRequest personDtoRequest) {
-        return mapper.map(personDtoRequest, Person.class);
+    public Person convertPersonRequestDtoToPerson(PersonRequestDto personRequestDto) {
+        return mapper.map(personRequestDto, Person.class);
+    }
+    public PersonResponseDto convertPersonToPersonResponseDto(Person person) {
+        return mapper.map(person, PersonResponseDto.class);
     }
 }
