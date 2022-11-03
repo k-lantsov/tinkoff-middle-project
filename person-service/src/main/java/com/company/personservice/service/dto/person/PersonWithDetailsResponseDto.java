@@ -11,7 +11,7 @@ import java.util.UUID;
 
 @Getter
 @Setter
-public class PersonResponseDto {
+public class PersonWithDetailsResponseDto {
 
     private UUID uuid;
 

@@ -36,12 +36,10 @@ Accept: application/json
   ]
 }
 
-<> 2022-11-02T171539.201.json
-
 
 
 ###get person info by uuid
-GET http://localhost:8081/v1/api/persons/cb4e964e-8595-42c4-a8a5-be3d790b0031
+GET http://localhost:8081/v1/api/persons/1ff4209e-4672-48f8-8b94-4f4659b848f2
 Accept: application/json
 
 
@@ -49,5 +47,3 @@ Accept: application/json
 ###get all persons
 GET http://localhost:8081/v1/api/persons
 Accept: application/json
-
-<> 2022-11-02T171554.200.json

@@ -19,12 +19,4 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
             WHERE p.uuid = :uuid
             """)
     Optional<Person> findByUuid(UUID uuid);
-
-//    @Query("""
-//            select distinct p from Person p
-//            join fetch p.addresses addresses
-//            join fetch p.documents documents
-//            join fetch p.contacts contacts
-//            """)
-//    List<Person> findAll();
 }

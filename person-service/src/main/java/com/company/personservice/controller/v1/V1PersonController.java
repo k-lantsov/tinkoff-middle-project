@@ -2,9 +2,10 @@ package com.company.personservice.controller.v1;
 
 import com.company.personservice.controller.v1.converter.V1PersonControllerConverter;
 import com.company.personservice.controller.v1.dto.person.V1PersonRequestModel;
-import com.company.personservice.controller.v1.dto.person.V1PersonResponseModel;
+import com.company.personservice.controller.v1.dto.person.V1PersonWithDetailsResponseModel;
+import com.company.personservice.controller.v1.dto.person.V1PersonWithoutDetailsResponseModel;
 import com.company.personservice.service.PersonService;
-import com.company.personservice.service.dto.person.PersonResponseDto;
+import com.company.personservice.service.dto.person.PersonWithDetailsResponseDto;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @RestController
@@ -34,17 +34,18 @@ public class V1PersonController {
 
     @Operation(summary = "Get person information", tags = {"v1-person-controller"})
     @GetMapping(value = "/{uuid}")
-    public ResponseEntity<V1PersonResponseModel> getPersonInfo(@PathVariable UUID uuid) {
-        PersonResponseDto personResponseDto = personService.findByUuid(uuid);
-        V1PersonResponseModel responseModel = converter.convertPersonResponseDtoToV1PersonResponseModel(personResponseDto);
+    public ResponseEntity<V1PersonWithDetailsResponseModel> getPersonInfo(@PathVariable UUID uuid) {
+        PersonWithDetailsResponseDto personWithDetailsResponseDto = personService.findByUuid(uuid);
+        V1PersonWithDetailsResponseModel responseModel = converter.convertPersonWithDetailsResponseDtoToV1PersonResponseModel(personWithDetailsResponseDto);
         return ResponseEntity.status(HttpStatus.OK).body(responseModel);
     }
 
-    @Operation(summary = "Get information about all persons", tags = {"v1-person-controller"})
+    @Operation(summary = "Get all persons", tags = {"v1-person-controller"})
     @GetMapping
-    public ResponseEntity<List<V1PersonResponseModel>> getPersonInfo() {
-        return ResponseEntity.status(HttpStatus.OK).body(personService.findAll().stream()
-                .map(converter::convertPersonResponseDtoToV1PersonResponseModel)
-                .collect(Collectors.toList()));
+    public ResponseEntity<List<V1PersonWithoutDetailsResponseModel>> getPersonInfo() {
+        List<V1PersonWithoutDetailsResponseModel> responseModel = personService.findAll().stream()
+                .map(converter::convertPersonWithoutDetailsResponseDtoToV1PersonWithoutDetailsResponseModel)
+                .toList();
+        return ResponseEntity.status(HttpStatus.OK).body(responseModel);
     }
 }

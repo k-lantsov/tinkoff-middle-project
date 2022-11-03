@@ -5,7 +5,8 @@ import com.company.personservice.repository.PersonRepository;
 import com.company.personservice.service.PersonService;
 import com.company.personservice.service.converter.PersonServiceConverter;
 import com.company.personservice.service.dto.person.PersonRequestDto;
-import com.company.personservice.service.dto.person.PersonResponseDto;
+import com.company.personservice.service.dto.person.PersonWithDetailsResponseDto;
+import com.company.personservice.service.dto.person.PersonWithoutDetailsResponseDto;
 import com.company.personservice.util.PersonMessageUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,7 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -38,19 +38,21 @@ public class PersonServiceImpl implements PersonService {
 
     @Transactional
     @Override
-    public PersonResponseDto findByUuid(UUID uuid) {
+    public PersonWithDetailsResponseDto findByUuid(UUID uuid) {
+        log.info(PersonMessageUtil.onGetPersonByUuid(uuid));
         Person personFromDB = repository.findByUuid(uuid).orElseThrow();
-        return converter.convertPersonToPersonResponseDto(personFromDB);
+        PersonWithDetailsResponseDto personWithDetailsResponseDto = converter.convertPersonToPersonWithDetailsResponseDto(personFromDB);
+        log.info(PersonMessageUtil.onGetPersonByUuidSuccess());
+        return personWithDetailsResponseDto;
     }
 
     @Override
-    public List<PersonResponseDto> findAll() {
-        List<Person> personsFromDB = repository.findAll();
-        for (Person person: personsFromDB) {
-            person.setDocuments(null);
-            person.setAddresses(null);
-            person.setContacts(null);
-        }
-        return personsFromDB.stream().map(converter::convertPersonToPersonResponseDto).collect(Collectors.toList());
+    public List<PersonWithoutDetailsResponseDto> findAll() {
+        log.info(PersonMessageUtil.onGetAllPersonsWithoutDetails());
+        List<PersonWithoutDetailsResponseDto> personWithoutDetailsResponseDtos = repository.findAll().stream()
+                .map(converter::convertPersonToPersonWithoutDetailsResponseDto)
+                .toList();
+        log.info(PersonMessageUtil.onGetAllPersonsWithoutDetailsSuccess());
+        return personWithoutDetailsResponseDtos;
     }
 }
