@@ -36,8 +36,6 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
-        <addUniqueConstraint tableName="address"
-                             columnNames="country, locality, street, house_number, apartments_number, postcode"/>
     </changeSet>
 
     <changeSet id="drop-identity_document-table" author="kostialantsov">

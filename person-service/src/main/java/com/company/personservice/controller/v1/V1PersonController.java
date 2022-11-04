@@ -52,9 +52,6 @@ public class V1PersonController {
     @Operation(summary = "Verify person", tags = {"v1-person-controller"})
     @GetMapping(value = "/verify")
     public ResponseEntity<Boolean> verifyPerson(@RequestParam String lastname, @RequestParam String documentType, @RequestParam String documentNumber) {
-        List<V1PersonWithoutDetailsResponseModel> responseModel = personService.findAll().stream()
-                .map(converter::convertPersonWithoutDetailsResponseDtoToV1PersonWithoutDetailsResponseModel)
-                .toList();
-        return ResponseEntity.status(HttpStatus.OK).body(responseModel);
+        return ResponseEntity.status(HttpStatus.OK).body(personService.findByPersonLastname(lastname, documentType, documentNumber));
     }
 }

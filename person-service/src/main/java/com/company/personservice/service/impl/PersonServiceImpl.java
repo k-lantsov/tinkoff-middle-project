@@ -63,12 +63,11 @@ public class PersonServiceImpl implements PersonService {
     public boolean findByPersonLastname(String lastname, String documentType, String documentNumber) {
         log.info(PersonMessageUtil.onGetPersonByLastname(lastname));
         Person personFromDB = repository.findByPersonLastname(lastname)
-                .orElseThrow(() -> new PersonNotFoundException(
-                        String.format(
-                                "Person with lastname = %s and documentNumber = %s not found",
-                                lastname,
-                                documentNumber)));
+                .orElseThrow(() -> new PersonNotFoundException(String.format("Person with lastname = %s not found", lastname)));
         log.info(PersonMessageUtil.onGetPersonByLastnameSuccess());
-        return false;
+        return personFromDB.getDocuments().stream()
+                .anyMatch(document ->
+                        document.getDocumentType().name().equalsIgnoreCase(documentType) &&
+                                document.getDocumentNumber().equalsIgnoreCase(documentNumber));
     }
 }

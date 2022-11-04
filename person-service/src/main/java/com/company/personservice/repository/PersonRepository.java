@@ -20,6 +20,6 @@ public interface PersonRepository extends JpaRepository<Person, Long> {
             """)
     Optional<Person> findByUuid(UUID uuid);
 
-    @Query("select p from Person p join fetch p.documents")
+    @Query("select p from Person p join fetch p.documents where p.lastname = :lastname")
     Optional<Person> findByPersonLastname(String lastname);
 }

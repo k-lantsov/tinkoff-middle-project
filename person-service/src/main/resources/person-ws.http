@@ -38,12 +38,18 @@ Accept: application/json
 
 
 
-###get person info by uuid
-GET http://localhost:8081/v1/api/persons/1ff4209e-4672-48f8-8b94-4f4659b848f3
+### get person info by uuid
+GET http://localhost:8081/v1/api/persons/f64ad27b-dd81-4d60-a85b-add789e78628
 Accept: application/json
 
 
 
-###get all persons
+### get all persons
 GET http://localhost:8081/v1/api/persons
+Accept: application/json
+
+
+
+### verify person
+GET http://localhost:8081/v1/api/persons/verify?lastname=Lantsov&documentType=PASSPORT&documentNumber=MP3202487
 Accept: application/json
