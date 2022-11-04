@@ -1,5 +1,5 @@
 ### save new person
-POST http://localhost:8081/v1/api/persons/save
+POST http://localhost:8081/v1/api/persons
 Content-Type: application/json
 Accept: application/json
 
@@ -39,7 +39,7 @@ Accept: application/json
 
 
 ###get person info by uuid
-GET http://localhost:8081/v1/api/persons/1ff4209e-4672-48f8-8b94-4f4659b848f2
+GET http://localhost:8081/v1/api/persons/1ff4209e-4672-48f8-8b94-4f4659b848f3
 Accept: application/json
 
 

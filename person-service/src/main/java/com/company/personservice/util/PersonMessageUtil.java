@@ -32,4 +32,12 @@ public class PersonMessageUtil {
     public static String onGetAllPersonsWithoutDetailsSuccess() {
         return "Brief info all persons was successfully received";
     }
+
+    public static String onGetPersonByLastname(String lastname) {
+        return String.format("Get info about person and his documents by lastname = %s", lastname);
+    }
+
+    public static String onGetPersonByLastnameSuccess() {
+        return "Info about the person and his documents was successfully received";
+    }
 }

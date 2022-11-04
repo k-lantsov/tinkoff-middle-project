@@ -26,7 +26,7 @@ public class V1PersonController {
     private final V1PersonControllerConverter converter;
 
     @Operation(summary = "Save new person", tags = {"v1-person-controller"})
-    @PostMapping(value = "/save")
+    @PostMapping
     public ResponseEntity<String> save(@RequestBody @Valid V1PersonRequestModel requestModel) {
         personService.savePerson(converter.convertV1PersonRequestModelToPersonRequestDto(requestModel));
         return ResponseEntity.status(HttpStatus.CREATED).body("Person was saved");
@@ -42,7 +42,16 @@ public class V1PersonController {
 
     @Operation(summary = "Get all persons", tags = {"v1-person-controller"})
     @GetMapping
-    public ResponseEntity<List<V1PersonWithoutDetailsResponseModel>> getPersonInfo() {
+    public ResponseEntity<List<V1PersonWithoutDetailsResponseModel>> getAllPerson() {
+        List<V1PersonWithoutDetailsResponseModel> responseModel = personService.findAll().stream()
+                .map(converter::convertPersonWithoutDetailsResponseDtoToV1PersonWithoutDetailsResponseModel)
+                .toList();
+        return ResponseEntity.status(HttpStatus.OK).body(responseModel);
+    }
+
+    @Operation(summary = "Verify person", tags = {"v1-person-controller"})
+    @GetMapping(value = "/verify")
+    public ResponseEntity<Boolean> verifyPerson(@RequestParam String lastname, @RequestParam String documentType, @RequestParam String documentNumber) {
         List<V1PersonWithoutDetailsResponseModel> responseModel = personService.findAll().stream()
                 .map(converter::convertPersonWithoutDetailsResponseDtoToV1PersonWithoutDetailsResponseModel)
                 .toList();

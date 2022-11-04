@@ -11,4 +11,5 @@ public interface PersonService {
     void savePerson(PersonRequestDto person);
     PersonWithDetailsResponseDto findByUuid(UUID uuid);
     List<PersonWithoutDetailsResponseDto> findAll();
+    boolean findByPersonLastname(String lastname, String documentType, String documentNumber);
 }

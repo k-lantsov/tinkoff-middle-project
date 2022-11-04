@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.Set;
 
 @Getter
@@ -14,9 +15,11 @@ import java.util.Set;
 public class V1PersonRequestModel {
 
     @NotBlank
+    @Size(min = 2)
     private String firstname;
 
     @NotBlank
+    @Size(min = 2)
     private String lastname;
 
     private Set<V1IdentityDocumentRequestModel> documents;

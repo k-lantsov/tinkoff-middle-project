@@ -12,11 +12,14 @@ import java.util.UUID;
 public interface PersonRepository extends JpaRepository<Person, Long> {
 
     @Query("""
-            select distinct p from Person p
+            select p from Person p
             join fetch p.addresses addresses
             join fetch p.documents documents
             join fetch p.contacts contacts
-            WHERE p.uuid = :uuid
+            where p.uuid = :uuid
             """)
     Optional<Person> findByUuid(UUID uuid);
+
+    @Query("select p from Person p join fetch p.documents")
+    Optional<Person> findByPersonLastname(String lastname);
 }
