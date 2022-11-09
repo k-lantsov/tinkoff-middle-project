@@ -1,5 +1,5 @@
 ### save new person
-POST http://localhost:8081/v1/api/persons
+POST http://localhost:8081/api/v1/persons
 Content-Type: application/json
 Accept: application/json
 
@@ -39,17 +39,17 @@ Accept: application/json
 
 
 ### get person info by uuid
-GET http://localhost:8081/v1/api/persons/f64ad27b-dd81-4d60-a85b-add789e78628
+GET http://localhost:8081/api/v1/persons/f64ad27b-dd81-4d60-a85b-add789e78628
 Accept: application/json
 
 
 
 ### get all persons
-GET http://localhost:8081/v1/api/persons
+GET http://localhost:8081/api/v1/persons
 Accept: application/json
 
 
 
 ### verify person
-GET http://localhost:8081/v1/api/persons/verify?lastname=Lantsov&documentType=PASSPORT&documentNumber=MP3202487
+GET http://localhost:8081/api/v1/persons/verify?lastname=Lantsov&documentType=PASSPORT&documentNumber=MP3202487
 Accept: application/json
