@@ -16,8 +16,8 @@ import java.util.Collections;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.doReturn;
 
 @ExtendWith(MockitoExtension.class)
 class PersonServiceImplTest {
@@ -45,12 +45,12 @@ class PersonServiceImplTest {
 
     @Test
     void testSavePerson_whenPersonDetailsProvided() {
-        when(repository.save(any(Person.class))).thenReturn(person);
+        doReturn(person).when(repository).save(any(Person.class));
+        doReturn(person).when(converter).convertPersonRequestDtoToPerson(any(PersonRequestDto.class));
+
         PersonRequestDto personRequestDto = new PersonRequestDto();
         personRequestDto.setFirstname(person.getFirstname());
         personRequestDto.setLastname(person.getLastname());
-        when(converter.convertPersonRequestDtoToPerson(personRequestDto)).thenReturn(person);
-
         service.savePerson(personRequestDto);
 
         verify(repository).save(person);
