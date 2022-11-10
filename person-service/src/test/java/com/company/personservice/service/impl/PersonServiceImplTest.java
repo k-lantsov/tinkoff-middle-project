@@ -7,6 +7,8 @@ import com.company.personservice.service.dto.person.PersonRequestDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -14,6 +16,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Collections;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
@@ -29,10 +32,11 @@ class PersonServiceImplTest {
     @Mock
     private PersonServiceConverter converter;
     private Person person;
+    @Captor
+    private ArgumentCaptor<Person> argumentCaptor;
 
     @BeforeEach
-    void init() {
-        System.out.println("Before each");
+    void prepare() {
         person = Person.builder()
                 .firstname("Konstantin")
                 .lastname("Lantsov")
@@ -40,20 +44,20 @@ class PersonServiceImplTest {
                 .addresses(Collections.emptySet())
                 .contacts(Collections.emptySet())
                 .build();
-        person.setId(1L);
     }
 
     @Test
     void testSavePerson_whenPersonDetailsProvided() {
-        doReturn(person).when(repository).save(any(Person.class));
+        // arrange
         doReturn(person).when(converter).convertPersonRequestDtoToPerson(any(PersonRequestDto.class));
+        doReturn(person).when(repository).save(any(Person.class));
 
-        PersonRequestDto personRequestDto = new PersonRequestDto();
-        personRequestDto.setFirstname(person.getFirstname());
-        personRequestDto.setLastname(person.getLastname());
-        service.savePerson(personRequestDto);
+        //act
+        service.savePerson(new PersonRequestDto());
 
-        verify(repository).save(person);
+        // assert
+        verify(repository).save(argumentCaptor.capture());
+        assertThat(argumentCaptor.getValue()).isEqualTo(person);
     }
 
 }
