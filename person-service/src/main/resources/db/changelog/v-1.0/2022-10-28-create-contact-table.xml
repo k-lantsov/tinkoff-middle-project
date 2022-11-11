@@ -26,7 +26,7 @@
         </createTable>
         <addForeignKeyConstraint baseTableName="contact"
                                  baseColumnNames="person_id"
-                                 constraintName="person_fk"
+                                 constraintName="fk_person_contact"
                                  referencedTableName="person"
                                  referencedColumnNames="id"/>
     </changeSet>

@@ -17,12 +17,12 @@
         </createTable>
         <addForeignKeyConstraint baseTableName="person_address"
                                  baseColumnNames="person_id"
-                                 constraintName="person_fk"
+                                 constraintName="fk_person_address"
                                  referencedTableName="person"
                                  referencedColumnNames="id"/>
         <addForeignKeyConstraint baseTableName="person_address"
                                  baseColumnNames="address_id"
-                                 constraintName="address_fk"
+                                 constraintName="fk_address_person"
                                  referencedTableName="address"
                                  referencedColumnNames="id"/>
     </changeSet>

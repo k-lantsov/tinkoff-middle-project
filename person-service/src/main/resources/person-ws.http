@@ -39,7 +39,7 @@ Accept: application/json
 
 
 ### get person info by uuid
-GET http://localhost:8081/api/v1/persons/f64ad27b-dd81-4d60-a85b-add789e78628
+GET http://localhost:8081/api/v1/persons/b0a5f6ae-349a-4adf-9308-177510f3ccb8
 Accept: application/json
 
 
