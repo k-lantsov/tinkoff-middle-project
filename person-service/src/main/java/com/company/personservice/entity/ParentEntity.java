@@ -13,6 +13,6 @@ public class ParentEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "uuid_d")
+    @Column(name = "uuid_d", unique = true)
     private UUID uuid = UUID.randomUUID();
 }
